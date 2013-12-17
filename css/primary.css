@@ -34,9 +34,9 @@ h1.up {
 }
 
 h1.down {
-	-webkit-transform: translateY(-80px);
-	-moz-transform: translateY(-80px);
-	transform: translateY(-80px);
+	-webkit-transform: translateY(80px);
+	-moz-transform: translateY(80px);
+	transform: translateY(80px);
 }
 
 h1.scro-animate {
@@ -52,5 +52,5 @@ h1.scro-animate {
 	opacity: 1;
 }
 
-
+footer { height: 100px; }
 

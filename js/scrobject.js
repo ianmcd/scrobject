@@ -47,9 +47,7 @@
 		
 		win.scroll(function(event) {
 			var scroll = win.scrollTop();
-			var winPercent = win.height() * .1;
 			var winBottom = win.scrollTop() + win.height();
-			var winModBottom = win.scrollTop() + (win.height() - winPercent);
 			scrobjs.each(function(i, obj) {
 				var obj = $(obj);
 				var objTop = obj.offset().top;
@@ -77,11 +75,9 @@
 						
 					case "3":
 						if(obj.visible(true)) {
-							if(objTop < winModBottom) { 
 								obj.addClass("scro-animate");
-							}
 						} else {
-							obj.removeClass("scro-animate");
+								obj.removeClass("scro-animate");
 						}
 						break;
 				}
