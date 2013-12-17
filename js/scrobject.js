@@ -18,7 +18,7 @@
 	$.fn.scrobject = function(args){
 		
 		var settings = $.extend({
-			reset: "1" // 1 animation visible once, 2 only reset when scrolling down, 3 always reset
+			reset: "3" // 1 animation visible once, 2 only reset when scrolling down, 3 always reset
 		}, args);
 		
 		var win = $(window);
@@ -27,14 +27,13 @@
 		
 		scrobjs.each(function(i, obj) {
 			var obj = $(obj);
-			obj.removeClass("reveal");
-			if(obj.visible(true)) {
-				obj.addClass("scro-visible");
-			}
+			obj.addClass("scro-init") ;
+			obj.addClass("scro-visible");
 		});
 		
 		$(window).one('scroll', function() {
 		    var winBottom = win.scrollTop() + win.height();
+		    var winTop = win.scrollTop();
 		    scrobjs.each(function(i, obj) {
 				var obj = $(obj);
 				var objTop = obj.offset().top;
@@ -48,10 +47,15 @@
 		
 		win.scroll(function(event) {
 			var scroll = win.scrollTop();
+			var winPercent = win.height() * .1;
 			var winBottom = win.scrollTop() + win.height();
-			
+			var winModBottom = win.scrollTop() + (win.height() - winPercent);
 			scrobjs.each(function(i, obj) {
 				var obj = $(obj);
+				var objTop = obj.offset().top;
+				if(obj.hasClass("scro-visible") && !(obj.visible(true))) {
+					obj.removeClass("scro-visible");
+				}
 				switch(settings.reset) {
 					case "1":
 						if(obj.visible(true) && scroll > position) {
@@ -64,7 +68,6 @@
 							obj.addClass("scro-animate");
 						} else {
 							if(scroll < position){
-								var objTop = obj.offset().top;
 								if(objTop > winBottom) {
 									obj.removeClass("scro-animate");
 								}
@@ -74,7 +77,9 @@
 						
 					case "3":
 						if(obj.visible(true)) {
-							obj.addClass("scro-animate");
+							if(objTop < winModBottom) { 
+								obj.addClass("scro-animate");
+							}
 						} else {
 							obj.removeClass("scro-animate");
 						}
