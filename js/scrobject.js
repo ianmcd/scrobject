@@ -27,6 +27,7 @@
 		
 		scrobjs.each(function(i, obj) {
 			var obj = $(obj);
+			obj.removeClass("reveal");
 			if(obj.visible(true)) {
 				obj.addClass("scro-visible");
 			}
@@ -85,10 +86,6 @@
 			position = scroll;
 		});
 		
-		
-		
-		
-	
 		return this;
 	}
 })(jQuery); 

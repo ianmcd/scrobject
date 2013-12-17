@@ -42,7 +42,7 @@ h1.scro-animate {
 	opacity: 1;
 }
 
-h1.scro-visible { 
+h1.scro-visible, h1.reveal { 
 	opacity: 1; 
 	-webkit-transform: translateY(0);
 	-moz-transform: translateY(0);
